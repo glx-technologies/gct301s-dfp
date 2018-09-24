@@ -1,0 +1,2138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- File naming: <vendor>_<part/series name>.svd -->
+
+<!--
+  Copyright (C) 2012-2014 ARM Limited. All rights reserved.
+
+  Purpose: System Viewer Description (SVD) Example (Schema Version 1.1)
+           This is a description of a none-existent and incomplete device
+		   for demonstration purposes only.
+		   
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
+   - Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   - Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   - Neither the name of ARM nor the names of its contributors may be used 
+     to endorse or promote products derived from this software without 
+     specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  ARE DISCLAIMED. IN NO EVENT SHALL COPYRIGHT HOLDERS AND CONTRIBUTORS BE
+  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  POSSIBILITY OF SUCH DAMAGE.
+ -->
+ 
+<device schemaVersion="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD.xsd" >
+  <vendor>SZGC</vendor>                                           <!-- device vendor name -->
+  <vendorID>SZGC</vendorID>                                       <!-- device vendor short name -->
+  <name>GCT301S</name>                                            <!-- name of part-->
+  <series>GCT301S</series>                                        <!-- device series the device belongs to -->
+  <version>1.2</version>                                          <!-- version of this description, adding CMSIS-SVD 1.1 tags -->
+  <description>ARM 32-bit Cortex-M0 Microcontroller based device, CPU clock up to 8MHz, etc. </description>
+  <licenseText>                                                   <!-- this license text will appear in header file. \n force line breaks -->
+    ARM Limited (ARM) is supplying this software for use with Cortex-M\n
+    processor based microcontroller, but can be equally used for other\n
+    suitable  processor architectures. This file can be freely distributed.\n
+    Modifications to this file shall be clearly marked.\n
+    \n
+    THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED\n
+    OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF\n
+    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.\n
+    ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR\n
+    CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  </licenseText>
+  <cpu>                                                           <!-- details about the cpu embedded in the device -->
+    <name>CM0</name>
+    <revision>r0p0</revision>
+    <endian>little</endian>
+    <mpuPresent>false</mpuPresent>
+    <fpuPresent>false</fpuPresent>
+    <nvicPrioBits>2</nvicPrioBits>
+    <vendorSystickConfig>false</vendorSystickConfig>
+  </cpu>
+  <addressUnitBits>8</addressUnitBits>                            <!-- byte addressable memory -->
+  <width>32</width>                                               <!-- bus width is 32 bits -->
+  <!-- default settings implicitly inherited by subsequent sections -->
+  <size>32</size>                                                 <!-- this is the default size (number of bits) of all peripherals
+                                                                       and register that do not define "size" themselves -->
+  <access>read-write</access>                                     <!-- default access permission for all subsequent registers -->
+  <resetValue>0x00000000</resetValue>                             <!-- by default all bits of the registers are initialized to 0 on reset -->
+  <resetMask>0xFFFFFFFF</resetMask>                               <!-- by default all 32Bits of the registers are used -->
+
+  <peripherals>
+    
+    <!-- SYSCTRL -->
+    <peripheral>
+      <name>SYSCTRL</name>
+      <version>1.0</version>
+      <description>.</description>
+      <groupName>SYSCTRL</groupName>
+      <baseAddress>0x4001D000</baseAddress>
+      <size>32</size>
+      <access>read-write</access>
+
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+
+      <interrupt>
+        <name>EXT0</name>
+        <value>17</value>
+        <description>GPIO 2 interrupt</description>
+      </interrupt>
+
+      <interrupt>
+        <name>EXT1</name>
+        <value>18</value>
+        <description>GPIO 3 interrupt</description>
+      </interrupt>
+      
+      <interrupt>
+        <name>EXT2</name>
+        <value>19</value>
+        <description>GPIO 4 interrupt</description>
+      </interrupt>
+      
+      <interrupt>
+        <name>EXT3</name>
+        <value>20</value>
+        <description>GPIO 5 interrupt</description>
+      </interrupt>
+
+      <interrupt>
+        <name>IRQ26</name>
+        <value>26</value>
+      </interrupt>
+
+      <interrupt>
+        <name>IRQ27</name>
+        <value>27</value>
+      </interrupt>
+
+      <interrupt>
+        <name>IRQ28</name>
+        <value>28</value>
+      </interrupt>
+
+      <interrupt>
+        <name>IRQ29</name>
+        <value>29</value>
+      </interrupt>
+
+      <interrupt>
+        <name>IRQ30</name>
+        <value>30</value>
+      </interrupt>
+
+      <interrupt>
+        <name>IRQ31</name>
+        <value>31</value>
+      </interrupt>
+
+
+      <registers>
+        <!-- SYS_RST_STA -->
+        <register>
+          <name>SYS_RST_STA</name>
+          <description>System reset status</description>
+          <addressOffset>0x0</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x0</resetValue>
+
+          <fields>
+            <!-- WDT_TIMEOUT -->
+            <field>
+              <name>WDT_TIMEOUT</name>
+              <description>Watchdog timeout</description>
+              <bitRange>[0:0]</bitRange>
+            </field>  
+
+            <!-- CM0LOCKUP -->
+            <field>
+              <name>CMOLOCKUP</name>
+              <description>Core lockup</description>
+              <bitRange>[1:1]</bitRange>
+            </field>
+          </fields>
+        </register>
+
+        <!-- SYS_CLK_STA -->
+        <register>
+          <name>SYS_CLK_STA</name>
+          <description>System clock status</description>
+          <addressOffset>0x04</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x0</resetValue>
+
+          <fields>
+            <!-- DPLL_LOCK -->
+            <field>
+              <name>DPLL_LOCK</name>
+              <description>DPLL lock status</description>
+              <bitRange>[0:0]</bitRange>
+            </field>  
+          </fields>
+        </register>
+
+        <!-- SWD_ERA_KEY -->
+        <register>
+          <name>SWD_ERA_KEY</name>
+          <description>SWD erase key (0xC3A1)</description>
+          <addressOffset>0x08</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x0</resetValue>
+
+          <fields>
+            <!-- ERA_KEY -->
+            <field>
+              <name>ERA_KEY</name>
+              <description>ERA_KEY</description>
+              <bitRange>[31:0]</bitRange>
+            </field>  
+          </fields>
+        </register>
+        
+        <!-- SWD_ERA_CMD -->
+        <register>
+          <name>SWD_ERA_CMD</name>
+          <description>SWD erase command</description>
+          <addressOffset>0x0C</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x0</resetValue>
+
+          <fields>
+            <!-- CFERA -->
+            <field>
+              <name>CFERA</name>
+              <description>CFERA</description>
+              <bitRange>[0:0]</bitRange>
+            </field>  
+            
+            <!-- DFERA -->
+            <field>
+              <name>DFERA</name>
+              <description>DFERA</description>
+              <bitRange>[1:1]</bitRange>
+            </field>  
+          </fields>
+        </register>
+
+        <!-- RST_CR -->
+        <register>
+          <name>RST_CR</name>
+          <description>Reset configuration</description>
+          <addressOffset>0x10</addressOffset>
+          <fields>
+            <field> <name>RSTN_KEY</name>     <bitRange>[7:0]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <!-- CLK_DIVSEL -->
+        <register>
+          <name>CLK_DIVSEL</name>
+          <description>.</description>
+          <addressOffset>0x14</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x1</resetValue>
+          <resetMask>0x0007</resetMask>
+
+          <fields>
+            <!-- DIVSEL -->
+            <field>
+              <name>DIVSEL</name>
+              <description>Clock divider selection</description>
+              <bitRange>[2:0]</bitRange>
+            </field>
+          </fields>
+        </register>
+        
+        <!-- CLK_SRCSEL -->
+        <register>
+          <name>CLK_SRCSEL</name>
+          <description>.</description>
+          <addressOffset>0x18</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x0</resetValue>
+          <resetMask>0x0007</resetMask>
+
+          <fields>
+            <!-- LCDCLKSEL -->
+            <field>
+              <name>LCDCLKSEL</name>
+              <description>LCD clock selection</description>
+              <bitRange>[0:0]</bitRange>
+            </field>
+            <!-- LXTALSEL -->
+            <field>
+              <name>LXTALSEL</name>
+              <description>HSCLK/LXTAL selection</description>
+              <bitRange>[1:1]</bitRange>
+            </field>
+            <!-- HXTALSEL -->
+            <field>
+              <name>HXTALSEL</name>
+              <description>HSRC/HXTAL selection</description>
+              <bitRange>[2:2]</bitRange>
+            </field>
+          </fields>
+        </register>
+
+        <!-- NMI_CTL -->
+        <register>
+          <name>NMI_CTL</name>
+          <description>NMI control</description>
+          <addressOffset>0x1C</addressOffset>
+          <fields>
+            <field> <name>NMISEL</name>     <bitRange>[4:0]</bitRange>  </field>
+            <field> <name>NMIEN</name>      <bitRange>[5:5]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <!-- HSRC_CTL -->
+        <register>
+          <name>HSRC_CTL</name>
+          <description>HSRC control</description>
+          <addressOffset>0x20</addressOffset>
+          <fields>
+            <field> <name>PWRDN</name>     <bitRange>[1:1]</bitRange>  </field>
+            <field> <name>HTRIM</name>     <bitRange>[6:2]</bitRange>  </field>
+            <field> <name>HTRIM_EN</name>  <bitRange>[7:7]</bitRange>  </field>
+          </fields>
+        </register>
+        
+        <!-- LSRC_CTL -->
+        <register>
+          <name>LSRC_CTL</name>
+          <description>LSRC control</description>
+          <addressOffset>0x24</addressOffset>
+          <resetValue>0x20</resetValue>
+          <fields>
+            <field> <name>LSRC_ENB</name>     <bitRange>[0:0]</bitRange>  </field>
+            <field> <name>VREF_ENB</name>     <bitRange>[1:1]</bitRange>  </field>
+            <field> <name>LTRIM</name>        <bitRange>[5:2]</bitRange>  </field>
+            <field> <name>LTRIM_EN</name>     <bitRange>[6:6]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <!-- PWR_CTL -->
+        <register>
+          <name>PWR_CTL</name>
+          <description>Power control</description>
+          <addressOffset>0x28</addressOffset>
+          <resetValue>0x0</resetValue>
+          <fields>
+            <field> <name>VRACTIVE</name>     <bitRange>[0:0]</bitRange>  </field>
+            <field> <name>SRAMPS_EN</name>    <bitRange>[1:1]</bitRange>  </field>
+            <field> <name>ADCPS_EN</name>     <bitRange>[2:2]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <!-- DPLL_CTL -->
+        <register>
+          <name>DPLL_CTL</name>
+          <description>DPLL control</description>
+          <addressOffset>0x2C</addressOffset>
+          <resetValue>0x0</resetValue>
+          <fields>
+            <field> <name>DPLL_EN</name>     <bitRange>[0:0]</bitRange>  </field>
+          </fields>
+        </register>
+        
+        <!-- CHIP_CFG -->
+        <register>
+          <name>CHIP_CFG</name>
+          <description>Chip configuration</description>
+          <addressOffset>0x30</addressOffset>
+          <resetValue>0x0</resetValue>
+          <access>read-only</access>
+          <fields>
+            <field> <name>LXTAL_CFG</name>     <bitRange>[1:0]</bitRange>    </field>
+            <field> <name>BOND_A_SEL</name>    <bitRange>[2:2]</bitRange>    </field>
+            <field> <name>BOND_B_SEL</name>    <bitRange>[3:3]</bitRange>    </field>
+            <field> <name>OSC32K_ADJ</name>    <bitRange>[6:4]</bitRange>    </field>
+            <field> <name>LSRC_TRIM</name>     <bitRange>[10:7]</bitRange>   </field>
+            <field> <name>HSRC_TRIM</name>     <bitRange>[15:11]</bitRange>  </field>
+          </fields>
+        </register>
+      
+        <!-- SYS_CPL -->
+        <register>
+          <name>SYS_CPL</name>
+          <description>System code protection</description>
+          <addressOffset>0x34</addressOffset>
+          <resetValue>0x0</resetValue>
+          <access>read-only</access>
+          <fields>
+            <field> <name>CPL</name>     <bitRange>[1:0]</bitRange>  </field>
+          </fields>
+        </register>
+        
+        <!-- HXTAL_CTL -->
+        <register>
+          <name>HXTAL_CTL</name>
+          <description>HXTAL control</description>
+          <addressOffset>0x38</addressOffset>
+          <resetValue>0x0</resetValue>
+          <fields>
+            <field> <name>HXTAL_EN</name>     <bitRange>[0:0]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <!-- RTC_CTL -->
+        <register>
+          <name>RTC_CTL</name>
+          <description>RTC control</description>
+          <addressOffset>0x3C</addressOffset>
+          <resetValue>0x0</resetValue>
+          <fields>
+            <field> <name>IGN_RSTN</name>        <bitRange>[0:0]</bitRange>  </field>
+            <field> <name>SW_RESET_RTC</name>    <bitRange>[1:1]</bitRange>  </field>
+            <field> <name>PD_LXTAL</name>        <bitRange>[2:2]</bitRange>  </field>
+          </fields>
+        </register>
+        
+        <!-- WDT_CTL -->
+        <register>
+          <name>WDT_CTL</name>
+          <description>Watchdog trigger control</description>
+          <addressOffset>0x40</addressOffset>
+          <resetValue>0x0</resetValue>
+          <fields>
+            <field> <name>WDT_TRIG</name>     <bitRange>[0:0]</bitRange>  </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+
+    <!-- WDT -->
+    <peripheral>
+      <name>WDT</name>
+      <description>Watchdog</description>
+      <baseAddress>0x40006000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>WDT</name>
+        <value>1</value>
+      </interrupt>
+
+      <registers>
+        <register>
+          <name>CFG</name>
+          <description>Watchdog configuration</description>
+          <addressOffset>0x0</addressOffset>
+          <fields>
+            <field> <name>ON</name>       <bitRange>[0:0]</bitRange> <access>read-only</access> </field>
+            <field> <name>LOAD_SEL</name> <bitRange>[3:1]</bitRange> <access>read-only</access> </field>
+            <field> <name>WARN_EN</name>  <bitRange>[4:4]</bitRange> <access>read-only</access> </field>
+            <field> <name>LPM_EN</name>   <bitRange>[5:5]</bitRange> <access>read-only</access> </field>
+            <field> <name>DBG_HALT</name> <bitRange>[6:6]</bitRange> <access>read-only</access> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>IF</name>
+          <description>Interrupt flag</description>
+          <addressOffset>0x4</addressOffset>
+          <fields>
+            <field> <name>WARN_IF</name> <bitRange>[0:0]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>FEED</name>
+          <description>Watchdog feed command, write 0xBB66AA55 to feed.</description>
+          <addressOffset>0x8</addressOffset>
+          <access>write-only</access>
+		  <resetValue>0xBB66AA55</resetValue>
+        </register>
+        
+        <register>
+          <name>LOAD</name>
+          <description>Watchdog timeout reload selection.</description>
+          <addressOffset>0x0C</addressOffset>
+          <access>read-only</access>
+        </register>
+
+        <register>
+          <name>COUNT</name>
+          <description>Watchdog latched count value.</description>
+          <addressOffset>0x10</addressOffset>
+        </register>
+
+        <register>
+          <name>LATCH</name>
+          <description>Update COUNT register.</description>
+          <addressOffset>0x14</addressOffset>
+		  <fields>
+            <field> <name>LATCH_EN</name>     <bitRange>[0:0]</bitRange>     </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+    
+    <!-- RTC -->
+    <peripheral>
+      <name>RTC</name>
+      <version>1.0</version>
+      <description>RTC</description>
+      <groupName>RTC</groupName>
+      <baseAddress>0x40000000</baseAddress>
+      <size>32</size>
+      <access>read-write</access>
+
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+
+      <interrupt>
+        <name>RTC</name>
+        <value>2</value>
+      </interrupt>
+
+      <registers>
+        <!-- CLOCK -->
+        <register>
+          <name>CLOCK</name>
+          <description>Clock</description>
+          <addressOffset>0x0</addressOffset>
+          <fields>
+            <field> <name>SEC</name> <bitRange>[6:0]</bitRange>   </field>
+            <field> <name>MIN</name> <bitRange>[14:8]</bitRange>  </field>
+            <field> <name>HOUR</name>   <bitRange>[21:16]</bitRange> </field>
+          </fields>
+        </register>
+      
+        <!-- CALENDAR -->
+        <register>
+          <name>CALENDAR</name>
+          <description>Calendar</description>
+          <addressOffset>0x04</addressOffset>
+          <fields>
+            <field> <name>DAY</name>     <bitRange>[5:0]</bitRange>     </field>
+            <field> <name>MONTH</name>   <bitRange>[12:8]</bitRange>    </field>
+            <field> <name>YEAR</name>    <bitRange>[23:16]</bitRange>   </field>
+            <field> <name>WEEK</name>    <bitRange>[26:24]</bitRange>   </field>
+          </fields>
+        </register>
+
+        <!-- STATUS -->
+        <register>
+          <name>STATUS</name>
+          <description>Status</description>
+          <addressOffset>0x08</addressOffset>
+          <access>read-only</access>
+          <fields>
+            <field> <name>VALIDITY</name>     <bitRange>[0:0]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- LOAD -->
+        <register>
+          <name>LOAD</name>
+          <description>Load</description>
+          <addressOffset>0x0C</addressOffset>
+          <fields>
+            <field> <name>LOAD_EN</name>     <bitRange>[0:0]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- LATCH -->
+        <register>
+          <name>LATCH</name>
+          <description>Latch</description>
+          <addressOffset>0x10</addressOffset>
+          <fields>
+            <field> <name>LATCH_EN</name>     <bitRange>[0:0]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- ACSEL -->
+        <register>
+          <name>ACSEL</name>
+          <description>Adjust cycle selection</description>
+          <addressOffset>0x14</addressOffset>
+          <fields>
+            <field> <name>AC</name>     <bitRange>[1:0]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- ADJUST -->
+        <register>
+          <name>ADJUST</name>
+          <description>Adjustment amount</description>
+          <addressOffset>0x18</addressOffset>
+          <fields>
+            <field> <name>ADJ</name>     <bitRange>[8:0]</bitRange>     </field>
+          </fields>
+        </register>
+        
+        <!-- ALARMCTL -->
+        <register>
+          <name>ALARMCTL</name>
+          <description>Alarm control</description>
+          <addressOffset>0x1C</addressOffset>
+          <fields>
+            <field> <name>AM</name>     <bitRange>[3:0]</bitRange>     </field>
+            <field> <name>DW</name>     <bitRange>[4:4]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- ALARM -->
+        <register>
+          <name>ALARM</name>
+          <description>Alarm</description>
+          <addressOffset>0x20</addressOffset>
+          <fields>
+            <field> <name>SEC</name>      <bitRange>[6:0]</bitRange>     </field>
+            <field> <name>MIN</name>      <bitRange>[14:8]</bitRange>    </field>
+            <field> <name>HOUR</name>     <bitRange>[21:16]</bitRange>   </field>
+            <field> <name>DAY</name>      <bitRange>[30:24]</bitRange>   </field>
+          </fields>
+        </register>
+        
+        <!-- IE -->
+        <register>
+          <name>IE</name>
+          <description>Interrupt enable</description>
+          <addressOffset>0x24</addressOffset>
+          <fields>
+            <field> <name>SEC</name>     <bitRange>[0:0]</bitRange>     </field>
+            <field> <name>MIN</name>     <bitRange>[1:1]</bitRange>     </field>
+            <field> <name>HOUR</name>    <bitRange>[2:2]</bitRange>     </field>
+            <field> <name>DAY</name>     <bitRange>[3:3]</bitRange>     </field>
+            <field> <name>ALM</name>     <bitRange>[4:4]</bitRange>     </field>
+            <field> <name>TM0</name>     <bitRange>[5:5]</bitRange>     </field>
+            <field> <name>TM1</name>     <bitRange>[6:6]</bitRange>     </field>
+            <field> <name>XSTP</name>    <bitRange>[7:7]</bitRange>     </field>
+            <field> <name>ADJ</name>     <bitRange>[8:8]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- IF -->
+        <register>
+          <name>IF</name>
+          <description>Interrupt flag</description>
+          <addressOffset>0x28</addressOffset>
+          <fields>
+            <field> <name>SEC</name>     <bitRange>[0:0]</bitRange>     </field>
+            <field> <name>MIN</name>     <bitRange>[1:1]</bitRange>     </field>
+            <field> <name>HOUR</name>    <bitRange>[2:2]</bitRange>     </field>
+            <field> <name>DAY</name>     <bitRange>[3:3]</bitRange>     </field>
+            <field> <name>ALM</name>     <bitRange>[4:4]</bitRange>     </field>
+            <field> <name>TM0</name>     <bitRange>[5:5]</bitRange>     </field>
+            <field> <name>TM1</name>     <bitRange>[6:6]</bitRange>     </field>
+            <field> <name>XSTP</name>    <bitRange>[7:7]</bitRange>     </field>
+            <field> <name>ADJ</name>     <bitRange>[8:8]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- CTL -->
+        <register>
+          <name>CTL</name>
+          <description>Control</description>
+          <addressOffset>0x30</addressOffset>
+          <fields>
+            <field> <name>TM0EN</name>     <bitRange>[0:0]</bitRange>     </field>
+            <field> <name>TM1EN</name>     <bitRange>[1:1]</bitRange>     </field>
+            <field> <name>ALMEN</name>     <bitRange>[2:2]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- TMR0 -->
+        <register>
+          <name>TMR0</name>
+          <description>Timer 0 initial value</description>
+          <addressOffset>0x34</addressOffset>
+          <fields>
+            <field> <name>INI</name>     <bitRange>[7:0]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- TMR1 -->
+        <register>
+          <name>TMR1</name>
+          <description>Timer 1 initial value</description>
+          <addressOffset>0x38</addressOffset>
+          <fields>
+            <field> <name>INI</name>     <bitRange>[7:0]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- TMRSEL -->
+        <register>
+          <name>TMRSEL</name>
+          <description>Timer polarity</description>
+          <addressOffset>0x3C</addressOffset>
+          <fields>
+            <field> <name>TMR0POL</name>     <bitRange>[0:0]</bitRange>     </field>
+            <field> <name>TMR1POL</name>     <bitRange>[1:1]</bitRange>     </field>
+          </fields>
+        </register>
+        
+        <!-- TMRSRC -->
+        <register>
+          <name>TMRSRC</name>
+          <description>Timer clock source</description>
+          <addressOffset>0x40</addressOffset>
+          <fields>
+            <field> <name>TMR0SRC</name>     <bitRange>[3:0]</bitRange>     </field>
+            <field> <name>TMR1SRC</name>     <bitRange>[7:4]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- FOUT -->
+        <register>
+          <name>FOUT</name>
+          <description>FOUT source</description>
+          <addressOffset>0x44</addressOffset>
+          <fields>
+            <field> <name>FOUT0SRC</name>     <bitRange>[3:0]</bitRange>     </field>
+            <field> <name>FOUT1SRC</name>     <bitRange>[7:4]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- TRACK -->
+        <register>
+          <name>TRACK</name>
+          <description>Tracking control</description>
+          <addressOffset>0x48</addressOffset>
+          <fields>
+            <field> <name>TRACK</name>     <bitRange>[0:0]</bitRange>     </field>
+            <field> <name>TDSEL</name>     <bitRange>[1:1]</bitRange>     </field>
+          </fields>
+        </register>
+
+        <!-- TCNT -->
+        <register>
+          <name>TCNT</name>
+          <description>Track count</description>
+          <addressOffset>0x4C</addressOffset>
+          <fields>
+            <field> <name>CNT</name>     <bitRange>[20:0]</bitRange>     </field>
+          </fields>
+        </register>
+        
+        <!-- FDIV -->
+        <register>
+          <name>FDIV</name>
+          <description>16MHz clock adjustment</description>
+          <addressOffset>0x50</addressOffset>
+          <fields>
+            <field> <name>DIV</name>     <bitRange>[11:0]</bitRange>     </field>
+          </fields>
+        </register>
+        
+        <!-- RAM -->
+        <register>
+          <dim>6</dim>
+          <dimIncrement>4</dimIncrement>
+          <dimIndex>0,1,2,3,4,5</dimIndex>
+          <name>RAM[%s]</name>
+          <description>RAM</description>
+          <addressOffset>0x54</addressOffset>
+        </register>
+
+      </registers>
+    </peripheral>
+		
+    <peripheral>
+      <name>SPI</name>
+      <version>1.0</version>
+      <description>SPI</description>
+      <groupName>SPI</groupName>
+      <baseAddress>0x4001A000</baseAddress>
+      <size>32</size>
+      <access>read-write</access>
+
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+
+      <interrupt>
+        <name>SPI</name>
+        <value>9</value>
+      </interrupt>
+
+      <registers>
+        <register>
+        <name>DATA</name>
+        <description>Data</description>
+        <addressOffset>0x0</addressOffset>
+        </register>
+      
+        <register>
+          <name>STATE</name>
+          <description>State</description>
+          <addressOffset>0x04</addressOffset>
+          <fields>
+            <field> <name>IF</name>    <bitRange>[0:0]</bitRange>                               </field>
+            <field> <name>TIP</name>   <bitRange>[1:1]</bitRange>    <access>read-only</access> </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>CTRL</name>
+          <description>Control</description>
+          <addressOffset>0x08</addressOffset>
+          <fields>
+            <field> <name>CPHA</name>       <bitRange>[0:0]</bitRange>      </field>
+            <field> <name>CPOL</name>       <bitRange>[1:1]</bitRange>      </field>
+            <field> <name>EN</name>         <bitRange>[2:2]</bitRange>      </field>
+            <field> <name>IE</name>         <bitRange>[3:3]</bitRange>      </field>
+            <field> <name>BC</name>         <bitRange>[5:4]</bitRange>      </field>
+            <field> <name>FSB</name>        <bitRange>[6:6]</bitRange>      </field>
+            <field> <name>SS</name>         <bitRange>[10:7]</bitRange>     </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>CRSEL</name>
+          <description>Clock rate selection</description>
+          <addressOffset>0x0C</addressOffset>
+          <fields>
+            <field> <name>CR</name>       <bitRange>[2:0]</bitRange>    </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+
+    <peripheral>
+      <name>ADC</name>
+      <version>1.0</version>
+      <description>ADC</description>
+      <groupName>ADC</groupName>
+      <baseAddress>0x4000A000</baseAddress>
+      <size>32</size>
+      <access>read-write</access>
+
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+
+      <interrupt>
+        <name>ADC</name>
+        <value>22</value>
+      </interrupt>
+
+      <registers>
+        <register>
+          <name>CTL</name>
+          <description>Control</description>
+          <addressOffset>0x0</addressOffset>
+          <fields>
+            <field> <name>CHSEL</name>    <bitRange>[13:0]</bitRange>   </field>
+            <field> <name>CLKDIV</name>   <bitRange>[15:14]</bitRange>  </field>
+            <field> <name>EDGE</name>     <bitRange>[19:16]</bitRange>  </field>
+            <field> <name>MOD</name>      <bitRange>[21:20]</bitRange>  </field>
+            <field> <name>IE</name>       <bitRange>[22:22]</bitRange>  </field>
+          </fields>
+        </register>
+      
+        <register>
+          <name>EM</name>
+          <description>Mask bits for external events</description>
+          <addressOffset>0x04</addressOffset>
+          <fields>
+            <field> <name>EM0</name>    <bitRange>[0:0]</bitRange>  </field>
+            <field> <name>EM1</name>    <bitRange>[1:1]</bitRange>  </field>
+            <field> <name>EM2</name>    <bitRange>[2:2]</bitRange>  </field>
+            <field> <name>EM3</name>    <bitRange>[3:3]</bitRange>  </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>START</name>
+          <description>Start ADC conversion</description>
+          <addressOffset>0x08</addressOffset>
+          <fields>
+            <field> <name>ON</name>   <bitRange>[0:0]</bitRange>    </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>STA</name>
+          <description>ADC conversion status</description>
+          <addressOffset>0x0C</addressOffset>
+          <access>read-only</access>
+          <fields>
+            <field> <name>DONE</name>   <bitRange>[0:0]</bitRange>    </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>TH</name>
+          <description>Threshold values</description>
+          <addressOffset>0x10</addressOffset>
+          <fields>
+            <field> <name>CHSEL</name>       <bitRange>[3:0]</bitRange>      </field>
+            <field> <name>LOW</name>         <bitRange>[15:4]</bitRange>     </field>
+            <field> <name>HIGH</name>        <bitRange>[27:16]</bitRange>    </field>
+          </fields>
+        </register>
+        
+        <register>
+          <dim>14</dim>
+          <dimIncrement>4</dimIncrement>
+          <dimIndex>0,1,2,3,4,5,6,7,8,9,10,11,12,13</dimIndex>
+          <name>DR[%s]</name>
+          <description>ADC data</description>
+          <addressOffset>0x14</addressOffset>
+        </register>
+
+      </registers>
+    </peripheral>
+
+
+    <!-- LCD -->
+    <peripheral>
+      <name>LCD</name>
+      <description>LCD controller</description>
+      <baseAddress>0x40008000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>LCD</name>
+        <value>21</value>
+      </interrupt>
+
+      <registers>
+        <register>
+          <name>CFG_FRQ</name>
+          <description>Clock prescaler and divider configuration</description>
+          <addressOffset>0x00</addressOffset>
+          <fields>
+            <field> <name>PS</name>   <bitRange>[1:0]</bitRange>  </field>
+            <field> <name>DIV</name>  <bitRange>[5:2]</bitRange>  </field>
+            <field> <name>BF</name>   <bitRange>[8:6]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>CFG_DRV</name>
+          <description>Driver configuration</description>
+          <addressOffset>0x04</addressOffset>
+          <fields>
+            <field> <name>BIAS</name>   <bitRange>[0:0]</bitRange>  </field>
+            <field> <name>DUTY</name>   <bitRange>[1:1]</bitRange>  </field>
+            <field> <name>CC</name>     <bitRange>[3:2]</bitRange>  </field>
+            <field> <name>HD</name>     <bitRange>[5:5]</bitRange>  </field>
+            <field> <name>PON</name>    <bitRange>[8:6]</bitRange>  </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>IRQ</name>
+          <description>Interrupt status flag</description>
+          <addressOffset>0x08</addressOffset>
+          <access>read-only</access>
+          <fields>
+            <field> <name>SOF</name>   <bitRange>[0:0]</bitRange>  </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>CTL</name>
+          <description>Control</description>
+          <addressOffset>0x0C</addressOffset>
+          <fields>
+            <field> <name>LCDEN</name>    <bitRange>[0:0]</bitRange>  </field>
+            <field> <name>SOFC</name>     <bitRange>[1:1]</bitRange>  </field>
+            <field> <name>SOFIE</name>    <bitRange>[2:2]</bitRange>  </field>
+            <field> <name>BLINKEN</name>  <bitRange>[3:3]</bitRange>  </field>
+          </fields>
+        </register>
+      
+        <register>
+          <name>SEGM</name>
+          <description>Segment mask</description>
+          <addressOffset>0x10</addressOffset>
+          <size>26</size>
+        </register>
+        
+        <register>
+          <name>BUF</name>
+          <dim>8</dim>
+          <dimIncrement>4</dimIncrement>
+          <dimIndex>0,1,2,3,4,5,6,7</dimIndex>
+          <name>BUF[%s]</name>
+          <description>Display buffers</description>
+          <addressOffset>0x14</addressOffset>
+          <size>26</size>
+        </register>
+      </registers>
+    </peripheral>
+    
+    <!-- UART 0-->
+    <peripheral>
+      <name>UART0</name>
+      <groupName>UART</groupName>
+      <description>UART 0</description>
+      <baseAddress>0x40010000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+
+      <interrupt>
+        <name>UART0</name>
+        <value>3</value>
+      </interrupt>
+
+      <registers>
+        <register>
+          <name>DATA</name>
+          <description>Data buffer</description>
+          <addressOffset>0x0</addressOffset>
+        </register>
+        
+        <register>
+          <name>STATE</name>
+          <description>State</description>
+          <addressOffset>0x4</addressOffset>
+          <fields>
+            <field> <name>TXE</name>    <bitRange>[0:0]</bitRange>    <access>read-only</access>   </field>
+            <field> <name>RXF</name>    <bitRange>[1:1]</bitRange>    <access>read-only</access>   </field>
+            <field> <name>RXO</name>    <bitRange>[2:2]</bitRange>    <access>read-write</access>  </field>
+            <field> <name>FE</name>     <bitRange>[3:3]</bitRange>    <access>read-write</access>  </field>
+            <field> <name>PE</name>     <bitRange>[4:4]</bitRange>    <access>read-write</access>  </field>
+            <field> <name>TC</name>     <bitRange>[5:5]</bitRange>    <access>read-only</access>   </field>
+            <field> <name>NACK</name>   <bitRange>[6:6]</bitRange>    <access>read-write</access>  </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>CTRL</name>
+          <description>Control</description>
+          <addressOffset>0x8</addressOffset>
+          <fields>
+            <field> <name>TX_IE</name>    <bitRange>[0:0]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>RX_IE</name>    <bitRange>[1:1]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>TC_IE</name>    <bitRange>[2:2]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>TXPOL</name>    <bitRange>[3:3]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>RXPOL</name>    <bitRange>[4:4]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>DL</name>       <bitRange>[5:5]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>SL</name>       <bitRange>[6:6]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>PTY</name>      <bitRange>[7:7]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>PEN</name>      <bitRange>[8:8]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>IRPOL</name>    <bitRange>[9:9]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>IREN</name>     <bitRange>[10:10]</bitRange>  <access>read-write</access>   </field>
+            <field> <name>MODE</name>     <bitRange>[11:11]</bitRange>  <access>read-write</access>   </field>
+            <field> <name>LB</name>       <bitRange>[12:12]</bitRange>  <access>read-write</access>   </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>IF</name>
+          <description>Interrupt flag</description>
+          <addressOffset>0xC</addressOffset>
+          <fields>
+            <field> <name>TX_IF</name>    <bitRange>[0:0]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>RX_IF</name>    <bitRange>[1:1]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>TC_IF</name>    <bitRange>[2:2]</bitRange>    <access>read-write</access>   </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>BAUD</name>
+          <description>Baud rate control</description>
+          <addressOffset>0x10</addressOffset>
+        </register>
+        
+        <register>
+          <name>SCCTRL</name>
+          <description>Smartcard mode control</description>
+          <addressOffset>0x14</addressOffset>
+          <fields>
+            <field> <name>EGT</name>          <bitRange>[7:0]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>SCM</name>          <bitRange>[8:8]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>SCCLK_DIV</name>    <bitRange>[11:9]</bitRange>   <access>read-write</access>   </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>SCCLKEN</name>
+          <description>Smartcard clock enable</description>
+          <addressOffset>0x18</addressOffset>
+        </register>
+
+        <register>
+          <name>CLKEN</name>
+          <description>UART clock enable</description>
+          <addressOffset>0x1C</addressOffset>
+        </register>
+
+        <register>
+          <name>ENABLE</name>
+          <description>UART enable</description>
+          <addressOffset>0x20</addressOffset>
+          <fields>
+            <field> <name>TXEN</name>          <bitRange>[0:0]</bitRange>    <access>read-write</access>   </field>
+            <field> <name>RXEN</name>          <bitRange>[1:1]</bitRange>    <access>read-write</access>   </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+ 
+    
+    <!-- UART 1 -->
+    <peripheral derivedFrom="UART0">
+      <name>UART1</name>
+      <description>UART 1</description>
+      <baseAddress>0x40011000</baseAddress>
+      
+      <interrupt>
+        <name>UART1</name>
+        <value>4</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- UART 2 -->
+    <peripheral derivedFrom="UART0">
+      <name>UART2</name>
+      <description>UART 2</description>
+      <baseAddress>0x40012000</baseAddress>
+      
+      <interrupt>
+        <name>UART2</name>
+        <value>5</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- UART 3 -->
+    <peripheral derivedFrom="UART0">
+      <name>UART3</name>
+      <description>UART 3</description>
+      <baseAddress>0x40013000</baseAddress>
+      
+      <interrupt>
+        <name>UART3</name>
+        <value>6</value>
+      </interrupt>
+    </peripheral>
+   
+    <!-- UART 4 -->
+    <peripheral derivedFrom="UART0">
+      <name>UART4</name>
+      <description>UART 4</description>
+      <baseAddress>0x40014000</baseAddress>
+      
+      <interrupt>
+        <name>UART4</name>
+        <value>7</value>
+      </interrupt>
+    </peripheral>
+    
+    <!-- UART 5 -->
+    <peripheral derivedFrom="UART0">
+      <name>UART5</name>
+      <description>UART 5</description>
+      <baseAddress>0x40015000</baseAddress>
+      
+      <interrupt>
+        <name>UART5</name>
+        <value>8</value>
+      </interrupt>
+    </peripheral>
+
+    <!-- Code Flash -->
+    <peripheral>
+      <name>CFLASH</name>
+      <groupName>FLASH</groupName>
+      <description>Code Flash controller</description>
+      <baseAddress>0x40017000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>CFLASH</name>
+        <value>10</value>
+      </interrupt>
+
+      <registers>
+        <!-- KEY -->
+        <register>
+          <name>KEY</name>
+		      <description>Erase/Program key</description>
+          <addressOffset>0x0</addressOffset>
+        </register>
+
+        <!-- NVRP -->
+        <register>
+          <name>NVRP</name>
+          <description>NVR protection</description>
+          <addressOffset>0x04</addressOffset>
+        </register>
+
+        <!-- ERASCTR -->
+        <register>
+          <name>ERASCTR</name>
+          <description>Sector erase index</description>
+          <addressOffset>0x08</addressOffset>
+          <fields>
+            <field> <name>SCTERAI</name>  <bitRange>[8:0]</bitRange>  </field>
+          </fields>
+        </register>
+        
+        <!-- ERA -->
+        <register>
+          <name>ERA</name>
+          <description>Erase control</description>
+          <addressOffset>0x0C</addressOffset>
+          <fields>
+            <field> <name>MERA</name>      <bitRange>[0:0]</bitRange>  </field>
+            <field> <name>CERA</name>      <bitRange>[1:1]</bitRange>  </field>
+            <field> <name>NVRERA</name>    <bitRange>[2:2]</bitRange>  </field>
+            <field> <name>ERARETRY</name>  <bitRange>[8:8]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <!-- PROGADDR -->
+        <register>
+          <name>PROGADDR</name>
+          <description>Byte address to program</description>
+          <addressOffset>0x10</addressOffset>
+          <fields>
+            <field> <name>PROGRADDR</name>      <bitRange>[16:0]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <!-- PROGDATA -->
+        <register>
+          <name>PROGDATA</name>
+          <description>Byte data to program</description>
+          <addressOffset>0x14</addressOffset>
+          <fields>
+            <field> <name>PROGDATA</name>  <bitRange>[7:0]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <!-- PROG -->
+        <register>
+          <name>PROG</name>
+          <description>Program control</description>
+          <addressOffset>0x18</addressOffset>
+          <fields>
+            <field> <name>MPROG</name>      <bitRange>[0:0]</bitRange>  </field>
+            <field> <name>NVRPROG</name>    <bitRange>[1:1]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <!-- IE -->
+        <register>
+          <name>IE</name>
+          <description>Interrupt enable</description>
+          <addressOffset>0x1C</addressOffset>
+          <fields>
+            <field> <name>FIE</name>      <bitRange>[0:0]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <!-- IF -->
+        <register>
+          <name>IF</name>
+          <description>Status flag</description>
+          <addressOffset>0x20</addressOffset>
+          <fields>
+            <field> <name>FIF</name>      <bitRange>[0:0]</bitRange>  </field>
+          </fields>
+        </register>
+
+        <!-- TIME -->
+        <register>
+          <name>TIME</name>
+          <description>Time offset</description>
+          <addressOffset>0x24</addressOffset>
+          <fields>
+            <field> <name>OFFSET</name>     <bitRange>[1:0]</bitRange>  </field>
+            <field> <name>MODE</name>       <bitRange>[2:2]</bitRange>  </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+
+    <peripheral derivedFrom="CFLASH">
+      <name>DFLASH</name>
+      <description>Data flash controller</description>
+      <baseAddress>0x40018000</baseAddress>
+      
+      <interrupt>
+        <name>DFLASH</name>
+        <value>11</value>
+      </interrupt>
+    </peripheral>
+
+
+    <peripheral>
+      <name>TIMER0</name>
+      <description>TIMER 0</description>
+      <baseAddress>0x40001000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>TIMER0</name>
+        <value>12</value>
+      </interrupt>
+      
+      <registers>
+        <register>
+          <name>CTRL</name>
+          <description>Control</description>
+          <addressOffset>0x00</addressOffset>
+          <fields>
+            <field> <name>CEN</name>  <bitRange>[0:0]</bitRange> </field>
+            <field> <name>CRST</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>SRC</name>  <bitRange>[2:2]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>IF</name>
+          <description>Interrupt status flag</description>
+          <addressOffset>0x04</addressOffset>
+          <fields>
+            <field> <name>COMR0</name>  <bitRange>[0:0]</bitRange> </field>
+            <field> <name>COMR1</name>  <bitRange>[1:1]</bitRange> </field>
+            <field> <name>COMR2</name>  <bitRange>[2:2]</bitRange> </field>
+            <field> <name>CAPR0</name>  <bitRange>[3:3]</bitRange> </field>
+            <field> <name>CAPR1</name>  <bitRange>[4:4]</bitRange> </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>CNT</name>
+          <description>Count</description>
+          <addressOffset>0x08</addressOffset>
+        </register>
+        
+        <register>
+          <name>PR</name>
+          <description>Prescale</description>
+          <addressOffset>0x0C</addressOffset>
+        </register>
+        
+        <register>
+          <name>PS</name>
+          <description>Prescale counter</description>
+          <addressOffset>0x10</addressOffset>
+        </register>
+        
+        <register>
+          <name>COMCR</name>
+          <description>Compare control</description>
+          <addressOffset>0x14</addressOffset>
+          <fields>
+            <field> <name>COMR0_IE</name>   <bitRange>[0:0]</bitRange> </field>
+            <field> <name>COMR0_RST</name>  <bitRange>[1:1]</bitRange> </field>
+            <field> <name>COMR0_STP</name>  <bitRange>[2:2]</bitRange> </field>
+            <field> <name>COMR1_IE</name>   <bitRange>[3:3]</bitRange> </field>
+            <field> <name>COMR1_RST</name>  <bitRange>[4:4]</bitRange> </field>
+            <field> <name>COMR1_STP</name>  <bitRange>[5:5]</bitRange> </field>
+            <field> <name>COMR2_IE</name>   <bitRange>[6:6]</bitRange> </field>
+            <field> <name>COMR2_RST</name>  <bitRange>[7:7]</bitRange> </field>
+            <field> <name>COMR2_STP</name>  <bitRange>[8:8]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>COMR0</name>
+          <description>Compare 0</description>
+          <addressOffset>0x18</addressOffset>
+        </register>
+        
+        <register>
+          <name>COMR1</name>
+          <description>Compare 1</description>
+          <addressOffset>0x1C</addressOffset>
+        </register>
+
+        <register>
+          <name>COMR2</name>
+          <description>Compare 2</description>
+          <addressOffset>0x20</addressOffset>
+        </register>
+
+        <register>
+          <name>CAPCR</name>
+          <description>Capture control</description>
+          <addressOffset>0x24</addressOffset>
+          <fields>
+            <field> <name>CAP0_RE</name>  <bitRange>[0:0]</bitRange> </field>
+            <field> <name>CAP0_FE</name>  <bitRange>[1:1]</bitRange> </field>
+            <field> <name>CAP0_IE</name>  <bitRange>[2:2]</bitRange> </field>
+            <field> <name>CAP1_RE</name>  <bitRange>[3:3]</bitRange> </field>
+            <field> <name>CAP1_FE</name>  <bitRange>[4:4]</bitRange> </field>
+            <field> <name>CAP1_IE</name>  <bitRange>[5:5]</bitRange> </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>CAPR0</name>
+          <description>Capture 0</description>
+          <addressOffset>0x28</addressOffset>
+        </register>
+        
+        <register>
+          <name>CAPR1</name>
+          <description>Capture 1</description>
+          <addressOffset>0x2C</addressOffset>
+        </register>
+
+        <register>
+          <name>OCR</name>
+          <description>Output compare</description>
+          <addressOffset>0x30</addressOffset>
+          <fields>
+            <field> <name>OC0</name>   <bitRange>[0:0]</bitRange> </field>
+            <field> <name>OCC0</name>  <bitRange>[2:1]</bitRange> </field>
+            <field> <name>OC1</name>   <bitRange>[3:3]</bitRange> </field>
+            <field> <name>OCC1</name>  <bitRange>[5:4]</bitRange> </field>
+            <field> <name>OC2</name>   <bitRange>[6:6]</bitRange> </field>
+            <field> <name>OCC2</name>  <bitRange>[8:7]</bitRange> </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>PWMC</name>
+          <description>PWM control</description>
+          <addressOffset>0x34</addressOffset>
+          <fields>
+            <field> <name>PWMEN0</name>  <bitRange>[0:0]</bitRange> </field>
+            <field> <name>PWMEN1</name>  <bitRange>[1:1]</bitRange> </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>DBG</name>
+          <description>Debug halt</description>
+          <addressOffset>0x38</addressOffset>
+          <fields>
+            <field> <name>DBG_HALT</name>  <bitRange>[0:0]</bitRange> </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+
+    <peripheral derivedFrom="TIMER0">
+      <name>TIMER1</name>
+      <description>TIMER 1</description>
+      <baseAddress>0x40002000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>TIMER1</name>
+        <value>13</value>
+      </interrupt>
+    </peripheral>
+
+    <peripheral derivedFrom="TIMER0">
+      <name>TIMER2</name>
+      <description>TIMER 2</description>
+      <baseAddress>0x40003000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>TIMER2</name>
+        <value>14</value>
+      </interrupt>
+    </peripheral>
+
+    <peripheral derivedFrom="TIMER0">
+      <name>TIMER3</name>
+      <description>TIMER 3</description>
+      <baseAddress>0x40004000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>TIMER3</name>
+        <value>15</value>
+      </interrupt>
+    </peripheral>
+
+    <peripheral derivedFrom="TIMER0">
+      <name>TIMER4</name>
+      <description>TIMER 4</description>
+      <baseAddress>0x40005000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>TIMER4</name>
+        <value>16</value>
+      </interrupt>
+    </peripheral>
+
+    <!-- GPIO (template) -->
+    <peripheral>
+      <name>GPIOA</name>
+      <description>GPIO A</description>
+      <groupName>GPIO</groupName>
+      <baseAddress>0x40080000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+
+      <interrupt>
+        <name>GPIOA</name>
+        <value>23</value>
+      </interrupt>
+
+      <registers>
+        <register>
+          <name>DATAIN</name>
+          <description>Input pin</description>
+          <addressOffset>0x00</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>DATAOUT</name>
+          <description>Output latch</description>
+          <addressOffset>0x04</addressOffset>
+          <size>32</size>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>ANDISSET</name>
+          <description>Analog IO disable set</description>
+          <addressOffset>0x08</addressOffset>
+          <size>32</size>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>ANDISCLR</name>
+          <description>Analog IO disable clear</description>
+          <addressOffset>0x0C</addressOffset>
+          <size>32</size>
+		  <access>write-only</access>
+		  <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>OUTENSET</name>
+          <description>Output enable set</description>
+          <addressOffset>0x10</addressOffset>
+          <size>32</size>
+		  <resetValue>0x00000000</resetValue>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>OUTENCLR</name>
+          <description>Output enable clear</description>
+          <addressOffset>0x14</addressOffset>
+          <size>32</size>
+		  <access>write-only</access>
+		  <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>ALTFUNCSET</name>
+          <description>Alternate function enable set</description>
+          <addressOffset>0x18</addressOffset>
+          <size>32</size>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>ALTFUNCCLR</name>
+          <description>Alternate function enable clear</description>
+          <addressOffset>0x1C</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+		  <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>INTENSET</name>
+          <description>Interrupt enable set</description>
+          <addressOffset>0x20</addressOffset>
+          <size>32</size>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>INTENCLR</name>
+          <description>Interrupt enable clear</description>
+          <addressOffset>0x24</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+		  <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>INTTYPESET</name>
+          <description>Interrupt type set</description>
+          <addressOffset>0x28</addressOffset>
+          <size>32</size>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>INTTYPECLR</name>
+          <description>Interrupt type clear</description>
+          <addressOffset>0x2C</addressOffset>
+          <size>32</size>
+		  <access>write-only</access>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>INTPOLSET</name>
+          <description>Interrupt polarity set</description>
+          <addressOffset>0x30</addressOffset>
+          <size>32</size>
+		  
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>INTPOLCLR</name>
+          <description>Interrupt polarity clear</description>
+          <addressOffset>0x34</addressOffset>
+          <size>32</size>
+		  <access>write-only</access>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>INTSTATUS</name>
+          <description>Interrupt status</description>
+          <addressOffset>0x38</addressOffset>
+          <size>32</size>
+          <access>read-only</access>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>INTCLR</name>
+          <alternateRegister>INTSTATUS</alternateRegister>
+          <description>Interrupt status</description>
+          <addressOffset>0x38</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>BSCR</name>
+          <description>Bit set/clear</description>
+          <addressOffset>0x3C</addressOffset>
+          <size>32</size>
+          <access>write-only</access>
+        </register>
+        
+        <register>
+          <name>PUDISSET</name>
+          <description>Pullup disable set</description>
+          <addressOffset>0x40</addressOffset>
+          <size>32</size>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>PUDISCLR</name>
+          <description>Pullup disable clear</description>
+          <addressOffset>0x44</addressOffset>
+          <size>32</size>
+		  <access>write-only</access>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+        
+        <register>
+          <name>PUSELSET</name>
+          <description>Pullup select set</description>
+          <addressOffset>0x48</addressOffset>
+          <size>32</size>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>PUSELCLR</name>
+          <description>Pullup select clear</description>
+          <addressOffset>0x4C</addressOffset>
+          <size>32</size>
+		  <access>write-only</access>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[0:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[1:1]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[2:2]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[3:3]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[4:4]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[5:5]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[6:6]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[7:7]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[8:8]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[9:9]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[10:10]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[11:11]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[12:12]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[13:13]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[14:14]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[15:15]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <name>DSCTL</name>
+          <description>Drive strength control</description>
+          <addressOffset>0x50</addressOffset>
+          <size>32</size>
+          <fields>
+            <field> <name>port_0</name> <bitRange>[1:0]</bitRange> </field>
+            <field> <name>port_1</name> <bitRange>[3:2]</bitRange> </field>
+            <field> <name>port_2</name> <bitRange>[5:4]</bitRange> </field>
+            <field> <name>port_3</name> <bitRange>[7:6]</bitRange> </field>
+            <field> <name>port_4</name> <bitRange>[9:8]</bitRange> </field>
+            <field> <name>port_5</name> <bitRange>[11:10]</bitRange> </field>
+            <field> <name>port_6</name> <bitRange>[13:12]</bitRange> </field>
+            <field> <name>port_7</name> <bitRange>[15:14]</bitRange> </field>
+            <field> <name>port_8</name> <bitRange>[17:16]</bitRange> </field>
+            <field> <name>port_9</name> <bitRange>[19:18]</bitRange> </field>
+            <field> <name>port_10</name> <bitRange>[21:20]</bitRange> </field>
+            <field> <name>port_11</name> <bitRange>[23:22]</bitRange> </field>
+            <field> <name>port_12</name> <bitRange>[25:24]</bitRange> </field>
+            <field> <name>port_13</name> <bitRange>[27:26]</bitRange> </field>
+            <field> <name>port_14</name> <bitRange>[29:28]</bitRange> </field>
+            <field> <name>port_15</name> <bitRange>[31:30]</bitRange> </field>
+          </fields>
+        </register>
+
+        <register>
+          <dim>256</dim>
+          <dimIncrement>4</dimIncrement>
+          <name>LB_MASKED[%s]</name>
+          <description>Lower byte mask access</description>
+          <addressOffset>0x400</addressOffset>
+        </register>
+        
+        <register>
+          <dim>256</dim>
+          <dimIncrement>4</dimIncrement>
+          <name>UB_MASKED[%s]</name>
+          <description>Upper byte mask access</description>
+          <addressOffset>0x800</addressOffset>
+        </register>
+
+      </registers>
+    </peripheral>
+    
+    <peripheral derivedFrom="GPIOA">
+      <name>GPIOB</name>
+      <description>GPIO B</description>
+      <baseAddress>0x40081000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>GPIOB</name>
+        <value>24</value>
+      </interrupt>
+    </peripheral>
+
+    <peripheral derivedFrom="GPIOA">
+      <name>GPIOC</name>
+      <description>GPIO C</description>
+      <baseAddress>0x40082000</baseAddress>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      
+      <interrupt>
+        <name>GPIOC</name>
+        <value>25</value>
+      </interrupt>
+    </peripheral>
+
+  </peripherals>
+</device>

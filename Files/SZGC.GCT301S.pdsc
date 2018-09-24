@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>SZGC</vendor>
+  <url>http://www.keil.com/pack/</url>
+  <name>GCT301S</name>
+  <description>SZGC GCT301S ARM Cortex-M0 Device Family Pack</description>
+  
+  <supportContact>support@keil.com</supportContact>
+  <!-- optional license file -->
+  <!-- 
+  <license>
+  </license>
+  -->
+  
+  <releases>
+    <release version="1.0.0">
+      Initial Version
+    </release>
+    <release version="1.0.1">
+      Added GPIO bit fields
+    </release>
+    <release version="1.0.2">
+      Make code and data flash programming algorithms default 
+    </release>
+  <release version="1.0.3">
+      Added field for GPIO datain register 
+      Added missing ADJ field in RTC_IF register 
+    </release>
+  <release version="1.0.4">
+      Added configuration wizard script in system_gct301s.c 
+    </release>
+  <release version="1.0.5">
+      Fixed the IDE set/clear register access behaviour. Use write-only property for CLR registers. 
+    </release>
+  <release version="1.0.6">
+    Programming algorithms change, now Data Flash is erased whe Full Chip erase is used.
+  </release>
+  <release version="1.0.7">
+    Fixed the XTAL defined in system_gct301s.c.
+  </release>
+  <release version="1.0.8">
+    Configure all IO as digital input without pullup when programming.
+  </release>
+  <release version="1.0.9">
+    Update version.
+  </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>GCT301S</keyword>
+  </keywords>
+
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <devices>
+    <family Dfamily="GCT301S Series" Dvendor="SZGC">
+      <processor Dcore="Cortex-M0" DcoreVersion="r0p0" Dfpu="0" Dmpu="0" Dending="Little-endian" Dclock="8000000"/>
+      <description>
+        The GCT301S device family contains an ARM Cortex-M0 processor. CPU clock up to 8MHz
+      </description>
+      <device Dname="GCT301S">
+        <memory    id="IROM1"      start="0x00000000"  size="0x20000" startup="1" default="1"/>
+        <memory    id="IROM2"      start="0x10000000"  size="0x8000"  startup="0" default="0"/>
+        <memory    id="IRAM1"      start="0x20000000"  size="0x1800"  init="0" default="1"/>
+        <algorithm name="Flash/GCT301S_Code_Flash.FLM"     start="0x00000000" size="0x20000" default="1"/>
+        <algorithm name="Flash/GCT301S_Data_Flash.FLM"     start="0x10000000" size="0x8000" default="1"/>
+        <algorithm name="Flash/GCT301S_NVR_Code_Flash.FLM" start="0x00100000" size="0x0100" default="1"/>
+      </device>
+      <compile     header="Device/Include/gct301s.h"/>
+      <debug       svd="SVD/gct301s.svd"/>
+    </family>
+  </devices>
+
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0">
+      <description>System Startup for GCT301S Series</description>
+      <files>
+      <!--  include folder -->
+      <file category="include" name="Device/Include/"/>
+      <file category="source"  name="Device/Source/ARM/startup_gct301s.s" attr="config" version="1.0.0"/>
+      <file category="source"  name="Device/Source/system_gct301s.c"  attr="config" version="1.0.0"/>
+      </files>
+    </component>
+  </components>
+
+</package>
